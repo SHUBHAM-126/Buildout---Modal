@@ -11,7 +11,7 @@ function App() {
 
       <button onClick={() => setShowModal(prev => !prev)}>Open Form</button>
 
-      <Modal showModal={showModal} handleModal={() => setShowModal(prev => !prev)} />
+      {showModal && <Modal showModal={showModal} handleModal={() => setShowModal(prev => !prev)} />}
 
     </div>
   );
@@ -40,6 +40,11 @@ function Modal({ showModal, handleModal }) {
 
     e.preventDefault()
 
+    if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email) != true){
+      window.alert('Invalid email. Please check your email address.')
+      return 
+    }
+
     if (formData.phone.length != 10) {
       window.alert('Invalid phone number. Please enter a 10-digit phone number.')
       return
@@ -48,7 +53,9 @@ function Modal({ showModal, handleModal }) {
     const current_time = new Date().getTime()
     const selectedDate = new Date(formData.dob).getTime()
 
-    if (current_time < selectedDate) {
+    console.log(selectedDate)
+
+    if (current_time < selectedDate || !selectedDate) {
       window.alert("Invalid date of birth. Date of birth cannot be in the future.")
       return
     }
@@ -68,7 +75,7 @@ function Modal({ showModal, handleModal }) {
 
   return (
 
-    <div className={showModal ? 'modal active' : 'modal'}
+    <div className='modal'
       onClick={(e) => { 
 
         if(e.target.classList.contains('modal')){
@@ -85,16 +92,16 @@ function Modal({ showModal, handleModal }) {
         <form onSubmit={handleSubmit}>
 
           <label htmlFor="username">Username:</label>
-          <input id="username" name="username" type="text" value={formData.username} onChange={handleChange} required />
+          <input id="username" name="username" type="text" value={formData.username} onChange={handleChange}  required/>
 
           <label htmlFor="email">Email Address:</label>
-          <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
+          <input id="email" name="email" type="email" value={formData.email} onChange={handleChange}  />
 
           <label htmlFor="phone">Phone Number:</label>
-          <input id="phone" name="phone" type="number" value={formData.phone} onChange={handleChange} required />
+          <input id="phone" name="phone" type="number" value={formData.phone} onChange={handleChange}  />
 
           <label htmlFor="dob">Date of Birth:</label>
-          <input id="dob" name="dob" type="date" value={formData.dob} onChange={handleChange} required />
+          <input id="dob" name="dob" type="date" value={formData.dob} onChange={handleChange}  />
 
           <button type='submit'>Submit</button>
 
