@@ -103,7 +103,7 @@ function Modal({ showModal, handleModal }) {
           <label htmlFor="dob">Date of Birth:</label>
           <input id="dob" name="dob" type="date" value={formData.dob} onChange={handleChange}  />
 
-          <button type='submit'>Submit</button>
+          <button type='submit' className='submit-button'>Submit</button>
 
         </form>
 
