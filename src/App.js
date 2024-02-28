@@ -92,10 +92,10 @@ function Modal({ showModal, handleModal }) {
         <form onSubmit={handleSubmit}>
 
           <label htmlFor="username">Username:</label>
-          <input id="username" name="username" type="text" value={formData.username} onChange={handleChange}  required/>
+          <input id="username" name="username" type="text" value={formData.username} onChange={handleChange}  />
 
           <label htmlFor="email">Email Address:</label>
-          <input id="email" name="email" type="email" value={formData.email} onChange={handleChange}  />
+          <input id="email" name="email" type="text" value={formData.email} onChange={handleChange}  />
 
           <label htmlFor="phone">Phone Number:</label>
           <input id="phone" name="phone" type="number" value={formData.phone} onChange={handleChange}  />
